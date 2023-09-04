@@ -1,0 +1,11 @@
+﻿@model List<Movies>
+
+
+
+        @foreach (var movie in Model)
+        {
+            <div>
+                <img src="@movie.PosterUrl" />
+                <p>@movie.Title</p>
+            </div>
+        }

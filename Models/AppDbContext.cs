@@ -9,6 +9,7 @@ namespace Moview.Models
         {
 
         }
+        public DbSet<Movies> Movies { get; set; }
 
     }
 }

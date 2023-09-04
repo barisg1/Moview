@@ -1,0 +1,46 @@
+﻿@model List<Movies>
+
+
+
+@if (TempData["success"] != null)
+{
+    <h3>@TempData["success"]</h3>
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>ReleaseDate</th>
+            <th>Genre</th>
+            <th>Director</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.MovieId</td>
+                <td>@movie.Title</td>
+                <td>@movie.Description</td>
+                <td>@movie.ReleaseDate</td>
+                <td>@movie.Genre</td>
+                <td>@movie.Director</td>
+                <td>
+                    <a asp-controller="Movies" asp-action="AddOrEdit" asp-route-id="@movie.MovieId" type="button">Edit</a>
+                </td>
+                <td>
+                    <a asp-controller="Movies" asp-action="Delete" asp-route-id="@movie.MovieId" type="button">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-controller="Movies" asp-action="AddOrEdit" class="btn btn-lg btn-primary" type="button">
+        Add Movie
+    </a>
+</div>
