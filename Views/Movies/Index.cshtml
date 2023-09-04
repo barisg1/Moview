@@ -29,10 +29,10 @@
                 <td>@movie.Genre</td>
                 <td>@movie.Director</td>
                 <td>
-                    <a asp-controller="Movies" asp-action="AddOrEdit" asp-route-id="@movie.MovieId" type="button">Edit</a>
+                    <a asp-controller="Movies" asp-action="AddOrEdit" asp-route-id="@movie.MovieId" class="button" type="button">Edit</a>
                 </td>
                 <td>
-                    <a asp-controller="Movies" asp-action="Delete" asp-route-id="@movie.MovieId" type="button">Delete</a>
+                    <a asp-controller="Movies" asp-action="Delete" asp-route-id="@movie.MovieId" class="button" type="button">Delete</a>
                 </td>
             </tr>
         }
@@ -40,7 +40,7 @@
 </table>
 
 <div>
-    <a asp-controller="Movies" asp-action="AddOrEdit" class="btn btn-lg btn-primary" type="button">
+    <a asp-controller="Movies" asp-action="AddOrEdit" class="button" type="button">
         Add Movie
     </a>
 </div>

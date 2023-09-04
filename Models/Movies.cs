@@ -14,5 +14,11 @@ namespace Moview.Models
         public string Director { get; set; }
         [ValidateNever]
         public string PosterUrl { get; set; }
+        [Range(1.0, 10.0)]
+        public double IMDB { get; set; }
+        public string Language { get; set; }
+        public int Runtime { get; set; }
+        [Range(1.0, 10.0)]
+        public double Rating { get; set; }
     }
 }
