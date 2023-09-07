@@ -56,6 +56,11 @@
             <input type="file" name="file" class="form-control" />
             <span asp-validation-for="PosterUrl" class="text-danger"></span>
         </div>
+        <div class="row pb-3">
+            <label asp-for="TrailerUrl">Movie Trailer:</label>
+            <input asp-for="TrailerUrl" type="text" class="form-control" />
+            <span asp-validation-for="TrailerUrl" class="text-danger"></span>
+        </div>
         @if(Model != null)
         {
             <button type="submit" class="button">Edit Movie</button>

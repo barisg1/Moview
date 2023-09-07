@@ -5,24 +5,24 @@
 namespace Moview.Migrations
 {
     /// <inheritdoc />
-    public partial class imdb : Migration
+    public partial class trailer : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<double>(
-                name: "IMDB",
+            migrationBuilder.AddColumn<string>(
+                name: "TrailerUrl",
                 table: "Movies",
-                type: "float",
+                type: "nvarchar(max)",
                 nullable: false,
-                defaultValue: 0.0);
+                defaultValue: "");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "IMDB",
+                name: "TrailerUrl",
                 table: "Movies");
         }
     }

@@ -1,14 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Moview.Models;
+using System.Security.Claims;
 
 namespace Moview.Controllers
 {
     public class MoviesController : Controller
     {
         private readonly IMoviesRepository _moviesRepo;
+        private readonly IReviewsRepository _reviewsRepo;
         public readonly IWebHostEnvironment _webHostEnvironment;
-        public MoviesController(IMoviesRepository appDbContext, IWebHostEnvironment webHostEnvironment) {
+        public MoviesController(IMoviesRepository appDbContext, IReviewsRepository reviewsRepository, IWebHostEnvironment webHostEnvironment) {
             _moviesRepo = appDbContext;
+            _reviewsRepo = reviewsRepository;
             _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index()
@@ -18,9 +22,31 @@ namespace Moview.Controllers
         }
         public IActionResult AllMovies()
         {
+
             List<Movies> movies = _moviesRepo.GetAll().ToList();
+
             return View(movies);
         }
+
+        public IActionResult MoviePage(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return View();
+            }
+            else
+            {
+                List<Reviews> reviews = _reviewsRepo.GetAllReviewsByMovieId(id);
+                Movies? movieDb = _moviesRepo.Get(u => u.MovieId == id);
+                movieDb.Reviews = reviews;
+                if (movieDb == null)
+                {
+                    return NotFound();
+                }
+                return View(movieDb);
+            }
+        }
+
 
         public IActionResult AddOrEdit(int? id)
         {
@@ -66,32 +92,6 @@ namespace Moview.Controllers
             }
             return View();
         }
-        /*public IActionResult Edit(int? id)
-        {
-            if(id == null || id == 0)
-            {
-                return NotFound();
-            }
-            Movies? movieDb = _moviesRepo.Get(u => u.MovieId == id);
-            if(movieDb == null)
-            {
-                return NotFound();
-            }
-            return View(movieDb);
-        }
-        [HttpPost]
-        public IActionResult Edit(Movies movie)
-        {
-            if (ModelState.IsValid)
-            {
-                _moviesRepo.Edit(movie);
-                _moviesRepo.Save();
-                TempData["success"] = "Movie edited successfully";
-                return RedirectToAction("Index", "Movies");
-            }
-            return View();
-        }
-        */
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)

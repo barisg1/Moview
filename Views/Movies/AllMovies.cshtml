@@ -5,11 +5,13 @@
         <h1>Most Popular</h1>
         @foreach (var movie in Model.OrderByDescending(x => x.ReleaseDate).Take(5))
         {
-            <div class="Poster">
-                <img src="@movie.PosterUrl" />
-                <p>@movie.Title</p>
-                <p>Runtime: @(movie.Runtime / 60)h@(movie.Runtime % 60)m</p>
-            </div>
+            <a asp-controller="Movies" asp-action="MoviePage" asp-route-id="@movie.MovieId" type="button">
+                <div class="Poster">
+                    <img src="@movie.PosterUrl" />
+                    <p>@movie.Title</p>
+                    <p>Runtime: @(movie.Runtime / 60)h@(movie.Runtime % 60)m</p>
+                </div>
+            </a>
         }
         <br />
         <h1>New Releases</h1>

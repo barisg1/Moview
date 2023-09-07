@@ -20,5 +20,8 @@ namespace Moview.Models
         public int Runtime { get; set; }
         [Range(1.0, 10.0)]
         public double Rating { get; set; }
+        [ValidateNever]
+        public List<Reviews> Reviews { get; set; }
+        public string TrailerUrl { get; set; }
     }
 }
