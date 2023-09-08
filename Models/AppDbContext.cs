@@ -13,5 +13,8 @@ namespace Moview.Models
         public DbSet<Reviews> Reviews { get; set; }
 
         public DbSet<Movie> Movies { get; set; }
+
+        public DbSet<Users> Users { get; set; }
+       
     }
 }
