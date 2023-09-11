@@ -1,0 +1,37 @@
+﻿@model Movies
+<form method="post">
+    <input asp-for="MovieId" hidden />
+    <div class="border p-3 mt-5">
+        <div class="row pb-3">
+            <label asp-for="MovieId">Movie ID:</label>
+            <input asp-for="MovieId" type="text" disabled class="form-control" />
+        </div>
+        <div class="row pb-3">
+            <label asp-for="Title">Movie Title:</label>
+            <input asp-for="Title" type="text" disabled class="form-control" />
+        </div>
+        <div class="row pb-3">
+            <label asp-for="Description">Movie Description:</label>
+            <input asp-for="Description" type="text" disabled class="form-control" />
+        </div>
+        <div class="row pb-3">
+            <label asp-for="ReleaseDate">Movie Release Date:</label>
+            <input asp-for="ReleaseDate" type="text" disabled class="form-control" />
+        </div>
+        <div class="row pb-3">
+            <label asp-for="Genre">Movie Genre:</label>
+            <input asp-for="Genre" type="text" disabled class="form-control" />
+        </div>
+        <div class="row pb-3">
+            <label asp-for="Director">Movie Director:</label>
+            <input asp-for="Director" type="text" disabled class="form-control" />
+        </div>
+        <div class="row pb-3">
+            <label asp-for="IMDB">Movie IMDB:</label>
+            <input asp-for="IMDB" type="text" disabled class="form-control" />
+        </div>
+        <button type="submit" class="button">Delete Movie</button>
+        <a asp-controller="Movies" asp-action="Index" class="btn">Back</a>
+    </div>
+
+</form>
