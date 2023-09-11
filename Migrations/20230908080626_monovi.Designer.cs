@@ -12,7 +12,7 @@ using Moview.Models;
 namespace Moview.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230905094857_monovi")]
+    [Migration("20230908080626_monovi")]
     partial class monovi
     {
         /// <inheritdoc />
@@ -271,6 +271,10 @@ namespace Moview.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TrailerUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("MovieId");
 
                     b.ToTable("Movies");
@@ -303,6 +307,39 @@ namespace Moview.Migrations
                     b.HasIndex("MovieId");
 
                     b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("Moview.Models.Users", b =>
+                {
+                    b.Property<int>("UserID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserID"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserID");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

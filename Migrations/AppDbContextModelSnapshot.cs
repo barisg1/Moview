@@ -224,7 +224,6 @@ namespace Moview.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-<<<<<<< Updated upstream
             modelBuilder.Entity("Moview.Models.Movies", b =>
                 {
                     b.Property<int>("MovieId")
@@ -305,7 +304,8 @@ namespace Moview.Migrations
                     b.HasIndex("MovieId");
 
                     b.ToTable("Reviews");
-=======
+                });
+
             modelBuilder.Entity("Moview.Models.Users", b =>
                 {
                     b.Property<int>("UserID")
@@ -337,7 +337,6 @@ namespace Moview.Migrations
                     b.HasKey("UserID");
 
                     b.ToTable("Users");
->>>>>>> Stashed changes
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

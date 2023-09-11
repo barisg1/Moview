@@ -1,9 +1,6 @@
 html {
     font-size: 14px;
 }
-img{
-    width:250px;
-}
 
 @media (min-width: 768px) {
   html {
@@ -32,9 +29,6 @@ tr,td{
 h1{
     color:white;
     margin:10px;
-}
-p{
-    color:white;
 }
 
 .form-box {
