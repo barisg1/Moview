@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model List<Movies>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -13,6 +15,8 @@
 
         .container {
             margin-top: 50px;
+            display:flex;
+            flex-direction:column;
         }
 
         .jumbotron {
@@ -27,6 +31,8 @@
 
         .movie-list {
             margin-top: 20px;
+            display: flex;
+            flex-direction: column;
         }
 
         .movie-card {
@@ -51,7 +57,15 @@
         }
 
         .movie-poster img {
+            margin: 10px;
             max-width: 100%;
+            height: 350px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        a, a:hover{
+            color:#000;
+            text-decoration:none;
         }
     </style>
 </head>
@@ -62,95 +76,36 @@
             <p>Explore our collection of movies.</p>
         </div>
 
+        
+        <!-- Daha fazla film afişi ekleyin -->
         <div class="movie-list">
-            <!-- Örnek film kartı -->
-            <div class="movie-card">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="movie-poster">
-                            <img src="~/images/TopGunMaverick.jpg" alt="Top Gun Maverick" />
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <h2 class="movie-title">Top Gun Maverick</h2>
-                        <p class="movie-description">After 30 years of successful service in the Navy, United States Navy Lieutenant Pete “Maverick” Mitchell pushes the limits as a test pilot. Wanting to stay away from any mission that would tie him to the ground, Maverick finds himself training a platoon of Top Gun graduates for a special mission.</p>
-                        <div class="movie-details">
-                            <p><strong>Genre:</strong> Action</p>
-                            <p><strong>Director:</strong> Joseph Kosinski</p>
-                            <p><strong>Release Date:</strong> 2022-27-05</p>
-                            <p><strong>Runtime:</strong> 131 minutes</p>
-                            <p><strong>Rating:</strong> 8.3</p>
-                            <p><strong>Language:</strong> English</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @foreach(var movie in Model){
+                <!-- Örnek film kartı -->
+                <a asp-controller="Movies" asp-action="MoviePage" asp-route-id="@movie.MovieId" type="button">
 
-            <div class="movie-card">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="movie-poster">
-                            <img src="~/images/SkyscrapperMovie.jpg" alt="Skyscraper" />
+                    <div class="movie-card">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="movie-poster">
+                                    <img src="@movie.PosterUrl" alt="Top Gun Maverick" />
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <h2 class="movie-title">@movie.Title</h2>
+                                <p class="movie-description"> @movie.Description</p>
+                                <div class="movie-details">
+                                    <p><strong>Genre:</strong> @movie.Genre</p>
+                                    <p><strong>Director:</strong> @movie.Director</p>
+                                    <p><strong>Release Date:</strong> @movie.ReleaseDate</p>
+                                    <p><strong>Runtime:</strong> @(movie.Runtime / 60)h@(movie.Runtime % 60)m </p>
+                                    <p><strong>Language:</strong> @movie.Language</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-8">
-                        <h2 class="movie-title">Skyscraper</h2>
-                        <p class="movie-description">Former FBI agent Will Sawyer must save his family from a newly built Hong Kong skyscraper, the world's tallest skyscraper, after terrorists set the building on fire to blackmail the contractor.</p>
-                        <div class="movie-details">
-                            <p><strong>Genre:</strong> Action</p>
-                            <p><strong>Director:</strong> Rawson Marshall Thurber</p>
-                            <p><strong>Release Date:</strong> 2018-01-07</p>
-                            <p><strong>Runtime:</strong> 102 minutes</p>
-                            <p><strong>Rating:</strong> 5.8</p>
-                            <p><strong>Language:</strong> English</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="movie-card">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="movie-poster">
-                            <img src="~/images/ThePrestigeMovie.jpg" alt="The Prestige" />
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <h2 class="movie-title">The Prestige</h2>
-                        <p class="movie-description">The plot of the film, which tells the story of two magicians who worked together at first, and then turned into rivalry and even hostility, takes place in the time period known as the Victorian Age in England of the 19th century. In addition to director Nolan, Aaron Ryder and his wife Emma Thomas took part in the production of the film.</p>
-                        <div class="movie-details">
-                            <p><strong>Genre:</strong> Science Fiction/Drama</p>
-                            <p><strong>Director:</strong> Christopher Nolan</p>
-                            <p><strong>Release Date:</strong> 2006-22-12</p>
-                            <p><strong>Runtime:</strong> 130 minutes</p>
-                            <p><strong>Rating:</strong> 8.5</p>
-                            <p><strong>Language:</strong> English</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="movie-card">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="movie-poster">
-                            <img src="~/images/SoulMovie.jpg" alt="The Prestige" />
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <h2 class="movie-title">Soul</h2>
-                        <p class="movie-description">The plot of the film, which tells the story of two magicians who worked together at first, and then turned into rivalry and even hostility, takes place in the time period known as the Victorian Age in England of the 19th century. In addition to director Nolan, Aaron Ryder and his wife Emma Thomas took part in the production of the film.</p>
-                        <div class="movie-details">
-                            <p><strong>Genre:</strong> Animation/Comedy</p>
-                            <p><strong>Director:</strong> Christopher Nolan</p>
-                            <p><strong>Release Date:</strong> 2020-11-10</p>
-                            <p><strong>Runtime:</strong> 100 minutes</p>
-                            <p><strong>Rating:</strong> 8.0</p>
-                            <p><strong>Language:</strong> English</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </a>
+            }
+            
 
         </div>
     </div>

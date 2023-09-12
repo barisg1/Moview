@@ -11,8 +11,9 @@ namespace Moview.Models
         }
         public DbSet<Movies> Movies { get; set; }
         public DbSet<Reviews> Reviews { get; set; }
+        public DbSet<ApplicationUser> applicationUsers { get; set; }
 
-       // public DbSet<Movie> Movies { get; set; }
+        // public DbSet<Movie> Movies { get; set; }
 
         public DbSet<Users> Users { get; set; }
        

@@ -44,6 +44,8 @@ button.accept-policy {
     position: absolute;
     bottom: 0;
     width: 100%;
-    white-space: nowrap;
     line-height: 60px;
+    color: #707070;
+    height: .5em;
+    left: 0;
 }

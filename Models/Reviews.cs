@@ -24,5 +24,8 @@ namespace Moview.Models
         [Required]
         [DataType(DataType.Date)]
         public DateTime ReviewDate { get; set; }
+
+        public string UserId { get; set; }
+        public ApplicationUser user { get; set; }
     }
 }

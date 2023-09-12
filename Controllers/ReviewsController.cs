@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Moview.Models;
+using System.Security.Claims;
 
 namespace Moview.Controllers
 {
@@ -22,13 +24,22 @@ namespace Moview.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
+                review.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 review.MovieId = id;
                 review.ReviewDate = DateTime.Now;
                 _reviewsRepo.Add(review);
                 _reviewsRepo.Save();
             }
-            return View();
+            return RedirectToAction("MoviePage", "Movies", new {id = id });
         }
         
+        public IActionResult Delete(int id)
+        {
+            var entity = _reviewsRepo.Get(x => x.ReviewId == id);
+            int movId = entity.MovieId;
+            _reviewsRepo.Delete(entity);
+            _reviewsRepo.Save();
+            return RedirectToAction("MoviePage", "Movies", new {id = movId});
+        }
     }
 }

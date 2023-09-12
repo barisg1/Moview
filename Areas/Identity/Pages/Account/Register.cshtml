@@ -9,6 +9,16 @@
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="user-box">
+                <label asp-for="Input.FirstName">FirstName</label>
+                <input asp-for="Input.FirstName" class="form-control" autocomplete="username" aria-required="true" placeholder="first name" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="user-box">
+                <label asp-for="Input.LastName">LastName</label>
+                <input asp-for="Input.LastName" class="form-control" autocomplete="username" aria-required="true" placeholder="last name" />
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
+            <div class="user-box">
                 <label asp-for="Input.Email">Email</label>
                 <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
@@ -31,3 +41,4 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+

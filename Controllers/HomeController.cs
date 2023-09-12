@@ -6,16 +6,19 @@ namespace Moview.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IMoviesRepository _moviesRepo;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IMoviesRepository moviesRepo)
         {
             _logger = logger;
+            _moviesRepo = moviesRepo;
         }
 
         public IActionResult Index()
         {
-            return View();
+            List<Movies> movies = _moviesRepo.GetAll().ToList();
+            return View(movies);
         }
 
         public IActionResult Privacy()

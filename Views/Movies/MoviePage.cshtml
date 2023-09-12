@@ -1,4 +1,7 @@
-﻿@model Movies
+﻿@using Microsoft.AspNetCore.Identity;
+@model Movies
+@inject UserManager<ApplicationUser> UserManager
+
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -10,6 +13,7 @@
 
     .movie-container {
         width: 80%;
+        height:100%;
         margin: 0 auto;
         padding: 20px;
         background-color: rgba(0, 0, 0, 0.7);
@@ -78,6 +82,14 @@
         border-radius: 5px;
     }
 
+    a{
+        color: white;
+        text-decoration:none;
+    }
+    a:hover{
+        color: white;
+    }
+
 </style>
 
 <div class="movie-container">
@@ -89,6 +101,7 @@
         <p><strong>Director:</strong> @Model.Director</p>
         <p><strong>Runtime:</strong> @(Model.Runtime / 60)h@(Model.Runtime % 60)m</p>
         <p><strong>IMDb Rating:</strong> @Model.IMDB.ToString("0.0")</p>
+        <p><strong>Rating: </strong> @(Model.Reviews.Any() ? Model.Reviews.Average(r => r.Rating).ToString("0.00") : "N/A")</p>
     </div>
     <div class="description">
         <p>@Model.Description</p>
@@ -107,7 +120,17 @@
         {
             <div class="comment">
                 <p>@review.ReviewDate, @review.Rating</p>
-                <p><strong>Username:</strong> @review.Comment</p>
+                <p>
+                    <strong>
+                        @(UserManager.FindByIdAsync(review.UserId).Result.FirstName) @(UserManager.FindByIdAsync(review.UserId).Result.LastName): 
+                    </strong> @review.Comment
+                </p>
+                <a asp-controller="Reviews" asp-action="Delete" asp-route-id="@review.ReviewId">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+                    </svg>Delete
+                </a>
             </div>
         }
     </div>
