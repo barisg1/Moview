@@ -15,8 +15,8 @@
 
         .container {
             margin-top: 50px;
-            display:flex;
-            flex-direction:column;
+            display: flex;
+            flex-direction: column;
         }
 
         .jumbotron {
@@ -63,9 +63,10 @@
             border: 1px solid #ddd;
             border-radius: 5px;
         }
-        a, a:hover{
-            color:#000;
-            text-decoration:none;
+
+        a, a:hover {
+            color: #000;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -79,7 +80,7 @@
             <label for="selectedLanguage">Select Language:</label>
             <select name="selectedLanguage" id="selectedLanguage">
                 <option value="English">English</option>
-                <option value="Spanish">Spanish</option>
+                <option value="French">French</option>
                 <option value="Spanish">Spanish</option>
                 <option value="Turkish">Turkish</option>
             </select>
@@ -106,10 +107,11 @@
             <input type="submit" value="Filter">
         </form>
 
-        
+
         <!-- Daha fazla film afişi ekleyin -->
         <div class="movie-list">
-            @if(Model.Any()){
+            @if (Model.Any())
+            {
                 @foreach (var movie in Model)
                 {
                     <!-- Örnek film kartı -->
@@ -142,7 +144,7 @@
             {
                 <p>No movies found for the selected language.</p>
             }
-            
+
 
         </div>
     </div>

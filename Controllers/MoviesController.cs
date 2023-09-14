@@ -46,6 +46,14 @@ namespace Moview.Controllers
                 return View(movieDb);
             }
         }
+        [HttpGet]
+        public IActionResult FilterMovies(string selectedLanguage, string selectedGenre, string selectedIMDB)
+        {
+            List<Movies> movies = _moviesRepo.GetAll().ToList();
+            var filteredMovies = movies.Where(m => m.Language == selectedLanguage && m.Genre == selectedGenre && m.IMDB >= Convert.ToDouble(selectedIMDB)).ToList();
+
+            return View(filteredMovies);
+        }
 
 
         public IActionResult AddOrEdit(int? id)

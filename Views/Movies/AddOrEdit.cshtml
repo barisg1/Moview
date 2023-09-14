@@ -1,4 +1,9 @@
 ﻿@model Movies
+<style>
+    label {
+        color:white;
+    }
+</style>
 <form method="post" enctype="multipart/form-data">
     <input asp-for="PosterUrl" hidden/>
     @if (Model != null)

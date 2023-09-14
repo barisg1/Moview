@@ -37,8 +37,12 @@ namespace Moview.Controllers
         {
             var entity = _reviewsRepo.Get(x => x.ReviewId == id);
             int movId = entity.MovieId;
-            _reviewsRepo.Delete(entity);
-            _reviewsRepo.Save();
+            if(entity.UserId == User.FindFirstValue(ClaimTypes.NameIdentifier))
+            {
+                _reviewsRepo.Delete(entity);
+                _reviewsRepo.Save();
+            }
+            
             return RedirectToAction("MoviePage", "Movies", new {id = movId});
         }
     }
