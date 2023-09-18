@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Moview.Models;
 using System.Security.Claims;
@@ -15,6 +16,7 @@ namespace Moview.Controllers
             _reviewsRepo = reviewsRepository;
             _webHostEnvironment = webHostEnvironment;
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             List<Movies> movies = _moviesRepo.GetAll().ToList();
@@ -52,11 +54,11 @@ namespace Moview.Controllers
             List<Movies> movies = _moviesRepo.GetAll().ToList();
             List<string> selectedGenres = selectedGenre.Split(',').Select(s => s.Trim()).ToList();
             var filteredMovies = movies.Where(m =>
-               (string.IsNullOrEmpty(selectedLanguage) || m.Language == selectedLanguage) &&
-               (string.IsNullOrEmpty(selectedIMDB) || m.IMDB >= Convert.ToDouble(selectedIMDB)) &&
-               (string.IsNullOrEmpty(selectedGenres.FirstOrDefault()) || selectedGenres.All(genre => m.Genre.Contains(genre))) &&
-               (string.IsNullOrEmpty(selectedName) || m.Title.Contains(selectedName) || m.Director.Contains(selectedName))
-           ).ToList();
+                m.Language == selectedLanguage &&
+                m.IMDB >= Convert.ToDouble(selectedIMDB) &&
+                selectedGenres.All(genre => m.Genre.Contains(genre)) &&
+                (string.IsNullOrEmpty(selectedName) || m.Title.ToLower().Contains(selectedName.ToLower()) || m.Director.ToLower().Contains(selectedName.ToLower()))
+            ).ToList();
 
             return View(filteredMovies);
         }
