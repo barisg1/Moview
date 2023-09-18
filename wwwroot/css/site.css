@@ -157,7 +157,7 @@ label{
 .Poster {
     text-align: center;
     display: inline-block;
-    margin: 0px 10px 20px;
+    margin: 0px -6px 20px;
     flex: 0 0 calc(20% - 20px);
     transition: transform 0.3s ease, opacity 0.3s ease;
 }

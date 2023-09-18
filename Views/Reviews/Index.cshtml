@@ -1,16 +1,24 @@
 ﻿@model Reviews
+<style>
+    h2{ 
+        color:white;
+    }
+    label{
+        color:white;
+    }
+</style>
 <h2>Add Comment</h2>
 <form method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="@ViewBag.MovieId" />
         <div class="row pb-3">
             <label asp-for="Comment">Comment:</label>
-            <input asp-for="Comment" type="text" class="form-control" />
+            <input asp-for="Comment" type="text" class="form-control" autocomplete="off"/>
             <span asp-validation-for="Comment" class="text-danger"></span>
         </div>
         <div class="row pb-3">
             <label asp-for="Rating">Rating:</label>
-            <input asp-for="Rating" type="text" class="form-control" />
-            <span asp-validation-for="Rating" class="text-danger"></span>
+        <input asp-for="Rating" type="text" class="form-control" autocomplete="off" />
+            <span asp-validation-for="Rating" class="text-danger" ></span>
         </div>
         <button type="submit" class="button">Add Review</button>
         <a asp-controller="Movies" asp-action="MoviePage" asp-route-id="@ViewBag.MovieId" class="button">Back</a>

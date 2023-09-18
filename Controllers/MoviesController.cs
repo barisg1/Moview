@@ -47,10 +47,16 @@ namespace Moview.Controllers
             }
         }
         [HttpGet]
-        public IActionResult FilterMovies(string selectedLanguage, string selectedGenre, string selectedIMDB)
+        public IActionResult FilterMovies(string selectedLanguage, string selectedGenre, string selectedIMDB, string selectedName)
         {
             List<Movies> movies = _moviesRepo.GetAll().ToList();
-            var filteredMovies = movies.Where(m => m.Language == selectedLanguage && m.Genre == selectedGenre && m.IMDB >= Convert.ToDouble(selectedIMDB)).ToList();
+            List<string> selectedGenres = selectedGenre.Split(',').Select(s => s.Trim()).ToList();
+            var filteredMovies = movies.Where(m =>
+               (string.IsNullOrEmpty(selectedLanguage) || m.Language == selectedLanguage) &&
+               (string.IsNullOrEmpty(selectedIMDB) || m.IMDB >= Convert.ToDouble(selectedIMDB)) &&
+               (string.IsNullOrEmpty(selectedGenres.FirstOrDefault()) || selectedGenres.All(genre => m.Genre.Contains(genre))) &&
+               (string.IsNullOrEmpty(selectedName) || m.Title.Contains(selectedName) || m.Director.Contains(selectedName))
+           ).ToList();
 
             return View(filteredMovies);
         }

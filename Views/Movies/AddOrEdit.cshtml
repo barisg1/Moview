@@ -13,57 +13,57 @@
     <div class="border p-3 mt-5">
         <div class="row pb-3">
             <label asp-for="Title">Movie Title:</label>
-            <input asp-for="Title" type="text" class="form-control"/>
+            <input asp-for="Title" type="text" class="form-control" autocomplete="off" />
             <span asp-validation-for="Title" class="text-danger"></span>
         </div>
         <div class="row pb-3">
             <label asp-for="Description">Movie Description:</label>
-            <input asp-for="Description" type="text" class="form-control" />
+            <input asp-for="Description" type="text" class="form-control" autocomplete="off" />
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
         <div class="row pb-3">
             <label asp-for="ReleaseDate">Movie Release Date:</label>
-            <input asp-for="ReleaseDate" type="text" class="form-control" />
+            <input asp-for="ReleaseDate" type="text" class="form-control" autocomplete="off" />
             <span asp-validation-for="ReleaseDate" class="text-danger"></span>
         </div>
         <div class="row pb-3">
             <label asp-for="Genre">Movie Genre:</label>
-            <input asp-for="Genre" type="text" class="form-control" />
+            <input asp-for="Genre" type="text" class="form-control" autocomplete="off" />
             <span asp-validation-for="Genre" class="text-danger"></span>
         </div>
         <div class="row pb-3">
             <label asp-for="Director">Movie Director:</label>
-            <input asp-for="Director" type="text" class="form-control" />
+            <input asp-for="Director" type="text" class="form-control" autocomplete="off" />
             <span asp-validation-for="Director" class="text-danger"></span>
         </div>
         <div class="row pb-3">
             <label asp-for="IMDB">IMDB:</label>
-            <input asp-for="IMDB" type="text" class="form-control" />
+            <input asp-for="IMDB" type="text" class="form-control" autocomplete="off" />
             <span asp-validation-for="IMDB" class="text-danger"></span>
         </div>
         <div class="row pb-3">
             <label asp-for="Rating">Rating:</label>
-            <input asp-for="Rating" type="text" class="form-control" />
+            <input asp-for="Rating" type="text" class="form-control" autocomplete="off" />
             <span asp-validation-for="Rating" class="text-danger"></span>
         </div>
         <div class="row pb-3">
             <label asp-for="Language">Language:</label>
-            <input asp-for="Language" type="text" class="form-control" />
+            <input asp-for="Language" type="text" class="form-control" autocomplete="off" />
             <span asp-validation-for="Language" class="text-danger"></span>
         </div>
         <div class="row pb-3">
             <label asp-for="Runtime">Runtime:</label>
-            <input asp-for="Runtime" type="text" class="form-control" />
+            <input asp-for="Runtime" type="text" class="form-control" autocomplete="off" />
             <span asp-validation-for="Runtime" class="text-danger"></span>
         </div>
         <div class="row pb-3">
             <label asp-for="PosterUrl">Movie Poster:</label>
-            <input type="file" name="file" class="form-control" />
+            <input type="file" name="file" class="form-control" autocomplete="off" />
             <span asp-validation-for="PosterUrl" class="text-danger"></span>
         </div>
         <div class="row pb-3">
             <label asp-for="TrailerUrl">Movie Trailer:</label>
-            <input asp-for="TrailerUrl" type="text" class="form-control" />
+            <input asp-for="TrailerUrl" type="text" class="form-control" autocomplete="off" />
             <span asp-validation-for="TrailerUrl" class="text-danger"></span>
         </div>
         @if(Model != null)

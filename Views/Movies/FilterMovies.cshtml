@@ -1,5 +1,4 @@
 ﻿@model List<Movies>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,18 +75,19 @@
             <h1>Welcome to the Moview Library</h1>
             <p>Explore our collection of movies.</p>
         </div>
-        <form method="get" action="/Movies/FilterMovies">
+        <form method="get" id="filterForm" action="/Movies/FilterMovies">
             <label for="selectedLanguage">Select Language:</label>
             <select name="selectedLanguage" id="selectedLanguage">
                 <option value="English">English</option>
-                <option value="French">French</option>
                 <option value="Spanish">Spanish</option>
+                <option value="French">French</option>
                 <option value="Turkish">Turkish</option>
             </select>
             <label for="selectedGenre">Select Genre:</label>
             <select name="selectedGenre" id="selectedGenre">
                 <option value="Drama">Drama</option>
                 <option value="Comedy">Comedy</option>
+                <option value="Crime">Crime</option>
                 <option value="Action">Action</option>
                 <option value="Fantasy">Fantasy</option>
             </select>
@@ -104,7 +104,9 @@
                 <option value="8">8</option>
                 <option value="9">9</option>
             </select>
-            <input type="submit" value="Filter">
+            <label for="selectedName">Search:</label>
+            <input type="text" placeholder="Search Movies or Directors" name="selectedName" id="selectedName">
+            <input type="submit" id="filterButton" value="Filter">
         </form>
 
 
@@ -142,7 +144,7 @@
             }
             else
             {
-                <p>No movies found for the selected language.</p>
+                <p>No movies found for the selected filters.</p>
             }
 
 
